@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quel est ton niveau en finance ?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,600;1,500;1,600&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* Les Bâtisseurs : fond crème, or, obsidienne. Une colonne, une question à la fois. */
+:root{
+  --bg:#F6F3EC; --panel:#E8E4DC; --ink:#0A0A0B; --soft:rgba(10,10,11,.68);
+  --gold:#C9A84C; --gold-text:#6F5616; --white:#fff;
+  --display:'Bebas Neue','Arial Narrow',sans-serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --body:'DM Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);color-scheme:light}
+body{font-family:var(--body);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:560px;margin:0 auto;padding:20px 18px 40px}
+.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--gold);padding-bottom:10px;margin-bottom:22px}
+.brand{font-family:var(--display);letter-spacing:.2em;font-size:18px;color:var(--gold-text)}
+.who{font-family:var(--display);letter-spacing:.14em;font-size:16px}
+.eyebrow{font-family:var(--display);letter-spacing:.26em;font-size:15px;color:var(--gold-text);margin:0 0 6px}
+h1{font-family:var(--display);font-weight:400;font-size:46px;line-height:.98;letter-spacing:.02em;margin:0 0 10px;text-wrap:balance}
+.lead{font-family:var(--serif);font-style:italic;font-size:22px;line-height:1.3;color:var(--gold-text);margin:0 0 18px}
+p{margin:0 0 14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:12px 22px;border:2px solid var(--ink);background:var(--ink);color:var(--gold);font-family:var(--display);font-size:22px;letter-spacing:.14em;cursor:pointer;width:100%}
+.btn:hover{background:#1c1c1f}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn:focus-visible,.opt:focus-visible{outline:3px solid var(--gold-text);outline-offset:2px}
+.meta{font-size:13px;color:var(--soft);margin-top:14px}
+.bar{height:6px;background:var(--panel);margin-bottom:8px}
+.bar>i{display:block;height:100%;background:var(--gold);width:0;transition:width .25s}
+.count{font-family:var(--display);letter-spacing:.18em;font-size:15px;color:var(--gold-text);margin-bottom:14px;display:flex;justify-content:space-between}
+.tier{display:inline-block;border:1.5px solid var(--ink);background:var(--panel);font-family:var(--display);letter-spacing:.16em;font-size:15px;padding:3px 10px;margin-bottom:10px}
+.q{font-family:var(--display);font-weight:400;font-size:30px;line-height:1.08;letter-spacing:.02em;margin:0 0 16px;text-wrap:balance}
+.opts{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;min-height:56px;padding:12px 14px;border:1.5px solid var(--ink);background:var(--white);color:var(--ink);font:inherit;font-size:16px;line-height:1.35;cursor:pointer}
+.opt .k{font-family:var(--display);font-size:22px;line-height:1;width:22px;flex:none;color:var(--gold-text)}
+.opt .tag{display:none;margin-left:auto;flex:none;font-family:var(--display);letter-spacing:.1em;font-size:15px}
+.opt.good{border-color:var(--ink);border-width:3px;background:#F3E9C6}
+.opt.good .tag{display:block}
+.opt.bad{background:var(--panel);text-decoration:line-through;text-decoration-color:rgba(10,10,11,.45)}
+.opt.bad .tag{display:block;text-decoration:none}
+.opt:disabled{cursor:default}
+.why{background:var(--panel);border-left:5px solid var(--gold);padding:12px 14px;margin-bottom:16px;font-size:15px}
+.why b{font-family:var(--display);font-weight:400;letter-spacing:.12em;font-size:17px;color:var(--gold-text);display:block;margin-bottom:2px}
+.level{background:var(--ink);color:var(--white);border-left:6px solid var(--gold);padding:18px 18px 16px;margin-bottom:18px}
+.level .n{font-family:var(--display);letter-spacing:.22em;font-size:15px;color:var(--gold)}
+.level h2{font-family:var(--display);font-weight:400;font-size:44px;line-height:1;letter-spacing:.03em;margin:4px 0 8px;color:var(--gold)}
+.level .sc{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--panel)}
+.box{border:1px solid var(--ink);background:var(--white);padding:14px;margin-bottom:16px}
+.box h3{font-family:var(--display);font-weight:400;letter-spacing:.14em;font-size:20px;color:var(--gold-text);margin:0 0 6px}
+.box ul{margin:0;padding-left:18px}
+.box li{margin-bottom:6px;font-size:15px}
+.cta{background:var(--ink);border-left:6px solid var(--gold);padding:16px 18px;margin-bottom:16px;color:var(--panel)}
+.cta h3{font-family:var(--display);font-weight:400;font-size:28px;letter-spacing:.12em;color:var(--gold);margin:0 0 6px;line-height:1}
+.cta p{font-family:var(--serif);font-size:20px;line-height:1.3;margin:0}
+.cta b{color:var(--gold)}
+[hidden]{display:none!important}
+@media (prefers-reduced-motion:reduce){.bar>i{transition:none}}
+@media (min-width:480px){h1{font-size:56px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <div class="top"><span class="brand">LES BÂTISSEURS</span><span class="who">HORIA &amp; KARL</span></div>
+
+  <section id="intro">
+    <p class="eyebrow">TEST GRATUIT · 3 MINUTES</p>
+    <h1>QUEL EST TON NIVEAU EN FINANCE ?</h1>
+    <p class="lead">12 questions, des bases aux nuances. Chaque réponse t'apprend quelque chose.</p>
+    <p>Les premières questions sont accessibles, les dernières demandent plus de nuance. Tu découvres pourquoi après chaque réponse, et tu repars avec ton niveau. Personne ne voit tes réponses.</p>
+    <button class="btn" id="start" type="button">COMMENCER LE TEST</button>
+    <p class="meta">Test éducatif. Il ne promet aucun résultat et ne remplace pas un avis professionnel.</p>
+  </section>
+
+  <section id="quiz" hidden>
+    <div class="count"><span id="num">QUESTION 1 / 12</span><span id="score"></span></div>
+    <div class="bar" aria-hidden="true"><i id="fill"></i></div>
+    <div class="tier" id="tier"></div>
+    <h2 class="q" id="qtext" tabindex="-1"></h2>
+    <div class="opts" id="opts"></div>
+    <div class="why" id="why" hidden aria-live="polite"><b id="whyhead"></b><span id="whytext"></span></div>
+    <button class="btn" id="next" type="button" hidden>QUESTION SUIVANTE</button>
+  </section>
+
+  <section id="result" hidden>
+    <p class="eyebrow">TON RÉSULTAT</p>
+    <div class="level">
+      <div class="n" id="lvnum"></div>
+      <h2 id="lvname"></h2>
+      <div class="sc" id="lvscore"></div>
+    </div>
+    <p id="lvtext"></p>
+    <div class="box" id="reviewbox" hidden><h3>À REVOIR</h3><ul id="review"></ul></div>
+    <div class="cta">
+      <h3>TU VEUX AVANCER ENTOURÉ ?</h3>
+      <p>Écris-nous le mot <b>PARLONS VRAI</b> en message privé sur <b>@horiaetkarl</b>. Nous répondons simplement, sans promesse.</p>
+    </div>
+    <button class="btn ghost" id="again" type="button">REFAIRE LE TEST</button>
+    <p class="meta">Test éducatif. Il ne promet aucun résultat et ne remplace pas un avis professionnel.</p>
+  </section>
+</main>
+
+<script>
+var TIERS = ["PALIER 1 · LES BASES","PALIER 2 · LES REPÈRES","PALIER 3 · LES NUANCES"];
+var QUESTIONS = [
+  {t:0,q:"Les prix montent régulièrement. Ton argent reste des années sur un compte qui ne rapporte rien. Que s'est-il passé ?",
+   o:["Ton pouvoir d'achat a diminué","Ton pouvoir d'achat est resté le même, puisque la somme n'a pas changé","Ton pouvoir d'achat a augmenté, car l'argent est resté en sécurité"],a:0,
+   w:"C'est l'effet de l'inflation : la somme est identique, mais elle permet d'acheter moins.", r:"L'inflation : une somme identique permet d'acheter moins quand les prix montent."},
+  {t:0,q:"Avant de placer de l'argent, que fait-on en priorité ?",
+   o:["Se constituer une réserve pour les imprévus","Chercher le placement qui a le mieux marché l'an dernier","Attendre d'avoir une grosse somme"],a:0,
+   w:"Une réserve évite de devoir tout vendre dans l'urgence ou de t'endetter à la première dépense imprévue.", r:"Commencer par une réserve pour les imprévus."},
+  {t:0,q:"Un résultat annoncé très élevé, c'est en général…",
+   o:["Un risque plus élevé","Le signe d'un produit de meilleure qualité","Possible sans risque pour qui sait s'y prendre"],a:0,
+   w:"En finance, un potentiel de résultat plus élevé s'accompagne en général d'un risque plus élevé.", r:"Plus le résultat annoncé est élevé, plus le risque l'est en général."},
+  {t:0,q:"Quelqu'un te promet un résultat garanti, sans risque. Quelle est la meilleure réaction ?",
+   o:["Je demande qui est derrière, les frais et les risques, par écrit","Je lui demande ses résultats passés et je m'y fie","J'attends qu'un proche s'y mette, puis je fonce"],a:0,
+   w:"Un résultat garanti est un signal d'alerte. Les résultats passés et l'avis des proches ne remplacent pas les informations écrites.", r:"Un résultat garanti est un signal d'alerte : on demande qui, combien et quels risques, par écrit."},
+
+  {t:1,q:"Répartir son argent sur plusieurs placements (diversifier) permet surtout de…",
+   o:["Limiter l'impact d'un seul placement qui se passe mal","Garantir un gain","Payer moins de frais"],a:0,
+   w:"Diversifier réduit la dépendance à un seul endroit. Cela ne supprime pas le risque et ne garantit rien.", r:"Diversifier limite l'impact d'un placement qui se passe mal, sans supprimer le risque."},
+  {t:1,q:"Un placement a très bien marché l'an dernier. Que peut-on en conclure ?",
+   o:["Rien de certain pour l'avenir","Qu'il continuera sur la même lancée","Qu'il est sans risque"],a:0,
+   w:"Les résultats passés ne garantissent pas les résultats futurs. C'est une mention que l'on retrouve dans les documents sérieux.", r:"Les résultats passés ne garantissent pas les résultats futurs."},
+  {t:1,q:"Pourquoi les frais comptent-ils, même quand ils semblent petits ?",
+   o:["Répétés dans le temps, ils réduisent ce qu'il te reste","Ils sont toujours déduits de tes impôts","Ils ne comptent que si le résultat est négatif"],a:0,
+   w:"De petits frais répétés pèsent d'année en année, que le résultat soit positif ou négatif. Demande toujours la liste complète.", r:"De petits frais répétés pèsent d'année en année : demande la liste complète."},
+  {t:1,q:"Que veut dire « liquidité » pour un placement ?",
+   o:["La facilité à le convertir rapidement en argent, sans perte importante","Le fait qu'il rapporte régulièrement","Le fait qu'il soit garanti"],a:0,
+   w:"Plus un placement est liquide, plus tu peux le revendre vite sans y perdre beaucoup. Certains placements sont difficiles à sortir.", r:"Liquidité : la facilité à retrouver son argent vite, sans perte importante."},
+
+  {t:2,q:"Les gains d'un placement s'ajoutent au capital, qui produit à son tour des gains. Comment s'appelle ce principe ?",
+   o:["Les intérêts composés","L'effet de levier","La diversification"],a:0,
+   w:"Avec le temps, les gains génèrent eux-mêmes des gains. C'est pour cela que la durée compte autant que le montant.", r:"Les intérêts composés : les gains génèrent à leur tour des gains avec le temps."},
+  {t:2,q:"Qu'est-ce que l'effet de levier ?",
+   o:["Utiliser de l'argent emprunté pour augmenter sa mise : gains et pertes sont amplifiés","Une garantie contre les pertes","Un moyen de réduire ses frais"],a:0,
+   w:"Le levier amplifie les deux sens : un gain plus grand, mais aussi des pertes plus grandes, parfois supérieures à la mise de départ.", r:"L'effet de levier amplifie les gains comme les pertes."},
+  {t:2,q:"Placer le même montant à intervalles réguliers, quel que soit le prix du moment, s'appelle…",
+   o:["Le DCA (Dollar Cost Averaging)","Le market timing","L'arbitrage"],a:0,
+   w:"Le DCA lisse le prix d'achat dans le temps et évite de chercher le « bon moment ». Il ne garantit aucun résultat. Le market timing, lui, consiste à deviner le bon moment.", r:"Le DCA : même montant à intervalles réguliers, sans chercher le bon moment."},
+  {t:2,q:"Que mesure la volatilité d'un actif ?",
+   o:["L'ampleur de ses variations de prix","La perte maximale garantie","Ses frais annuels"],a:0,
+   w:"Plus un actif est volatil, plus son prix monte et descend fortement sur une courte période. Ce n'est pas forcément un mauvais signe, mais ça demande de pouvoir supporter les variations.", r:"La volatilité mesure l'ampleur des variations de prix."}
+];
+var LEVELS = [
+  {n:"NIVEAU 1", name:"JE DÉMARRE", t:"Tu pars du début, et c'est un vrai point de départ. Ce qui compte : comprendre avant d'agir. Commence par une idée simple : savoir où part ton argent chaque mois, puis relis les points « À revoir » ci-dessous."},
+  {n:"NIVEAU 2", name:"JE ME REPÈRE", t:"Tu as déjà de bons réflexes sur les bases. Il te reste à explorer les nuances : avant tout engagement, vérifie qui est derrière, quels sont les frais et quelles promesses sont faites, et demande-toi toujours « Puis-je me le permettre ? »."},
+  {n:"NIVEAU 3", name:"J'AVANCE", t:"Tu connais les repères et une bonne partie des nuances. Tes réflexes sont solides. Continue à vérifier, à poser des questions et à rester prudent : connaître les mots ne dispense jamais de réfléchir."},
+  {n:"NIVEAU 4", name:"JE SUIS À L'AISE", t:"Tu maîtrises les notions étudiées ici, bravo. Garde pourtant la même prudence : savoir ne protège pas des décisions prises sous le coup de l'émotion, et la décision t'appartient toujours."}
+];
+var LETTERS = ["A","B","C"];
+var i = 0, score = 0, missed = [], answered = false, order = [];
+function $(id){ return document.getElementById(id); }
+function show(id){ ["intro","quiz","result"].forEach(function(s){ $(s).hidden = (s !== id); }); window.scrollTo(0,0); }
+function shuffle(a){ for(var j=a.length-1;j>0;j--){ var k=Math.floor(Math.random()*(j+1)); var t=a[j]; a[j]=a[k]; a[k]=t; } return a; }
+
+function render(){
+  var Q = QUESTIONS[i]; answered = false;
+  order = shuffle([0,1,2]);
+  $("num").textContent = "QUESTION " + (i+1) + " / " + QUESTIONS.length;
+  $("score").textContent = "";
+  $("tier").textContent = TIERS[Q.t];
+  $("fill").style.width = (i / QUESTIONS.length * 100) + "%";
+  $("qtext").textContent = Q.q;
+  $("why").hidden = true; $("next").hidden = true;
+  var box = $("opts"); box.innerHTML = "";
+  order.forEach(function(src, k){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "opt"; b.id = "opt" + k;
+    b.innerHTML = '<span class="k">' + LETTERS[k] + '</span><span></span><span class="tag"></span>';
+    b.children[1].textContent = Q.o[src];
+    b.addEventListener("click", function(){ pick(k); });
+    box.appendChild(b);
+  });
+  $("qtext").focus({preventScroll:true});
+}
+function pick(k){
+  if(answered) return; answered = true;
+  var Q = QUESTIONS[i], good = order.indexOf(Q.a), ok = (k === good);
+  if(ok){ score++; } else { missed.push(i); }
+  for(var j=0;j<3;j++){
+    var b = $("opt" + j); b.disabled = true;
+    if(j === good){ b.classList.add("good"); b.querySelector(".tag").textContent = "BONNE RÉPONSE"; }
+    else if(j === k){ b.classList.add("bad"); b.querySelector(".tag").textContent = "PAS TOUT À FAIT"; }
+  }
+  $("whyhead").textContent = ok ? "EXACT" : "À RETENIR";
+  $("whytext").textContent = Q.w;
+  $("why").hidden = false;
+  $("next").textContent = (i === QUESTIONS.length - 1) ? "VOIR MON RÉSULTAT" : "QUESTION SUIVANTE";
+  $("next").hidden = false;
+  $("score").textContent = score + " bonne" + (score > 1 ? "s" : "") + " réponse" + (score > 1 ? "s" : "");
+  $("fill").style.width = ((i+1) / QUESTIONS.length * 100) + "%";
+  $("next").scrollIntoView({block:"nearest", behavior:"smooth"});
+}
+function levelFor(n){ return n <= 4 ? 0 : (n <= 8 ? 1 : (n <= 10 ? 2 : 3)); }
+function finish(){
+  var L = LEVELS[levelFor(score)];
+  $("lvnum").textContent = L.n; $("lvname").textContent = L.name;
+  $("lvscore").textContent = score + " / " + QUESTIONS.length + " bonnes réponses";
+  $("lvtext").textContent = L.t;
+  var ul = $("review"); ul.innerHTML = "";
+  missed.forEach(function(m){ var li = document.createElement("li"); li.textContent = QUESTIONS[m].r; ul.appendChild(li); });
+  $("reviewbox").hidden = (missed.length === 0);
+  show("result");
+}
+$("start").addEventListener("click", function(){ i = 0; score = 0; missed = []; show("quiz"); render(); });
+$("next").addEventListener("click", function(){ if(i < QUESTIONS.length - 1){ i++; render(); } else { finish(); } });
+$("again").addEventListener("click", function(){ show("intro"); });
+</script>
+</body>
+</html>
